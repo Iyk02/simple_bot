@@ -1,0 +1,11 @@
+<launch>
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find simple_bot)/src/urdf/bot.urdf'"/>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find simple_bot)/src/launch/config.rviz"/>
+    
+    <node name="bot_mover" pkg="simple_bot" type="main.py" />
+
+    <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" >
+        <param name="use_gui" value="True"/>
+    </node>
+</launch>
